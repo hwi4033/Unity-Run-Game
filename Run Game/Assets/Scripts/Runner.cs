@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum RoadLine
@@ -21,14 +19,14 @@ public class Runner : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        InputManager.Instance.action += OnKeyUpdate;
+    }
+
     void Start()
     {
         roadLine = RoadLine.MIDDLE;
-    }
-
-    void Update()
-    {
-        OnKeyUpdate();
     }
 
     private void FixedUpdate()
@@ -60,5 +58,10 @@ public class Runner : MonoBehaviour
     void Move()
     {
         rigidBody.position = Vector3.Lerp(rigidBody.position, new Vector3(positionX * (int)roadLine, 0, 0), speed * Time.fixedDeltaTime);
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.action -= OnKeyUpdate;
     }
 }
