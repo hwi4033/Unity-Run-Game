@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
 
     private void OnEnable()
     {
-        rotationObject = GameObject.Find("Rotation GameObject");
+        rotationObject = GameObject.Find("RotationGameObject");
 
         speed = rotationObject.GetComponent<RotationObject>().Speed;
 
