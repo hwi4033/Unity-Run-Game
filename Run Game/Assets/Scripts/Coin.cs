@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Coin : MonoBehaviour
+public class Coin : MonoBehaviour, IColliderable
 {
     [SerializeField] float speed;
     [SerializeField] GameObject rotationObject;
+
+    [SerializeField] ParticleSystem particleSystem;
+
+    public void Activate()
+    {
+        particleSystem.Play();
+
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
 
     private void OnEnable()
     {
@@ -14,12 +25,6 @@ public class Coin : MonoBehaviour
         speed = rotationObject.GetComponent<RotationObject>().Speed;
 
         transform.localRotation = rotationObject.transform.localRotation;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

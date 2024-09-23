@@ -1250,7 +1250,7 @@ MonoBehaviour:
   roads: []
   createCount: 4
   offset: 40
-  speed: 5
+  speed: 10
 --- !u!4 &1596936223
 Transform:
   m_ObjectHideFlags: 0

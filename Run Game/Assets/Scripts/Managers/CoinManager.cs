@@ -36,7 +36,8 @@ public class CoinManager : MonoBehaviour
                 clone.name = clone.name.Substring(0, index);
             }
 
-            clone.SetActive(false);
+            clone.GetComponent<MeshRenderer>().enabled = false;
+            clone.GetComponent<BoxCollider>().enabled = false;
 
             coins.Add(clone);
         }
@@ -45,5 +46,11 @@ public class CoinManager : MonoBehaviour
     public void InitializePosition()
     {
         transform.localPosition = new Vector3(positionX * Random.Range(-1, 2), 0, -10);
+
+        for (int i = 0; i < coins.Count; i++)
+        {
+            coins[i].GetComponent<MeshRenderer>().enabled = true;
+            coins[i].GetComponent<BoxCollider>().enabled = true;
+        }
     }
 }

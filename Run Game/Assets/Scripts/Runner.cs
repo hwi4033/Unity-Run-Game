@@ -34,6 +34,16 @@ public class Runner : MonoBehaviour
         Move();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        IColliderable icolliderable = other.GetComponent<IColliderable>();
+
+        if (icolliderable != null)
+        {
+            icolliderable.Activate();
+        }
+    }
+
     void OnKeyUpdate()
     {
         if (roadLine > RoadLine.LEFT)

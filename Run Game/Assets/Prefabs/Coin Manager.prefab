@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e7b46425cbda24c9ff8097e095de11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 3281515797848046829, guid: 548b782d4cee54445ad700f620c8dafe, type: 3}
+  prefab: {fileID: 0}
+  coins: []
+  meshRenderer: {fileID: 0}
   createCount: 16
   offset: 2.5
+  positionX: 4
