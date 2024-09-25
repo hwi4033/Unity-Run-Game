@@ -16,26 +16,19 @@ public class CoinManager : MonoBehaviour
     {
         coins.Capacity = 20;
 
-        Create();
+        Create();     
     }
 
     public void Create()
     {
         for (int i = 0; i < createCount; i++)
         {
-            GameObject clone = Instantiate(prefab);
+            GameObject clone = ResourcesManager.Instance.Instantiate("Coin");
 
             clone.transform.SetParent(gameObject.transform);
 
             clone.transform.localPosition = new Vector3(0, 0, offset * i);
-
-            int index = clone.name.IndexOf("(Clone)");
-
-            if (index > 0)
-            {
-                clone.name = clone.name.Substring(0, index);
-            }
-
+          
             clone.GetComponent<MeshRenderer>().enabled = false;
             clone.GetComponent<BoxCollider>().enabled = false;
 

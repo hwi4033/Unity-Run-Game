@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SelectButton : MonoBehaviour
 {
     [SerializeField] Text buttonText;
+    [SerializeField] AudioClip enterAudioClip;
 
     private void Awake()
     {
@@ -17,6 +18,8 @@ public class SelectButton : MonoBehaviour
     {
         buttonText.fontSize = 85;
         buttonText.color = Color.red;
+
+        AudioManager.Instance.Listen(enterAudioClip);
     }
 
     public void OnLeave()
