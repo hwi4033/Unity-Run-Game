@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 
-public class SpeedManager : Singleton<SpeedManager>
+public class SpeedManager : State
 {
     [SerializeField] float speed = 30.0f;
     [SerializeField] float limitSpeed = 75.0f;
@@ -15,9 +15,14 @@ public class SpeedManager : Singleton<SpeedManager>
         get { return speed; }
     }
 
+    private void Awake()
+    {
+        StartCoroutine(Increase());
+    }
+
     public IEnumerator Increase()
     {
-        while (speed < limitSpeed)
+        while (state == true && speed < limitSpeed)
         {
             yield return CoroutineCache.WaitForSecond(10);
 

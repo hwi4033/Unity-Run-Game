@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Coin : MonoBehaviour, IColliderable
+public class Coin : State, IColliderable
 {
     [SerializeField] float speed;
     [SerializeField] GameObject rotationObject;
 
-    [SerializeField] ParticleSystem particleSystem;
-
     public void Activate()
     {
-        particleSystem.Play();
-
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
     private void OnEnable()
     {
+        base.OnEnable();
+
         rotationObject = GameObject.Find("RotationGameObject");
 
         speed = rotationObject.GetComponent<RotationObject>().Speed;
@@ -30,6 +28,8 @@ public class Coin : MonoBehaviour, IColliderable
     // Update is called once per frame
     void Update()
     {
+        if (state == false) return;
+
         transform.Rotate(0, speed * Time.deltaTime, 0);
     }
 }

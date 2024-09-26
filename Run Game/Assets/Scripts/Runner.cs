@@ -7,7 +7,7 @@ public enum RoadLine
     RIGHT
 }
 
-public class Runner : MonoBehaviour
+public class Runner : State
 {
     [SerializeField] RoadLine roadLine;
     [SerializeField] float positionX = 2.0f;
@@ -21,6 +21,8 @@ public class Runner : MonoBehaviour
 
     private void OnEnable()
     {
+        base.OnEnable();
+
         InputManager.Instance.action += OnKeyUpdate;
     }
 
@@ -31,6 +33,8 @@ public class Runner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (state == false) return;
+
         Move();
     }
 
@@ -46,6 +50,8 @@ public class Runner : MonoBehaviour
 
     void OnKeyUpdate()
     {
+        if (state == false) return;
+
         if (roadLine > RoadLine.LEFT)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -72,6 +78,8 @@ public class Runner : MonoBehaviour
 
     private void OnDisable()
     {
+        base.OnDisable();
+
         InputManager.Instance.action -= OnKeyUpdate;
     }
 }
