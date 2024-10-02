@@ -22,7 +22,7 @@ public class MouseManager : Singleton<MouseManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
+        State(scene.buildIndex);
     }
 
     public void State(int state)
@@ -30,13 +30,26 @@ public class MouseManager : Singleton<MouseManager>
         switch (state)
         {
             case 0:
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                {
+                    texture2D = ResourcesManager.Instance.Load<Texture2D>("Default");
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.SetCursor(texture2D, Vector2.zero, CursorMode.Auto);
+                }
                 break;
             case 1:
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                {
+                    texture2D = ResourcesManager.Instance.Load<Texture2D>("Default");
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.SetCursor(texture2D, Vector2.zero, CursorMode.Auto);
+                }
                 break;
         }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

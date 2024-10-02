@@ -75,7 +75,7 @@ public class ObstacleManager : MonoBehaviour
             }
 
             // 랜덤으로 설정된 obstacle 오브젝트를 활성화한다.
-            obstacles[random].SetActive(true);           
+            obstacles[random].SetActive(true);
         }
     }
 }
