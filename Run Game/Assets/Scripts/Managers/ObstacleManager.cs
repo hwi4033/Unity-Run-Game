@@ -73,9 +73,11 @@ public class ObstacleManager : MonoBehaviour
                 // random 변수의 값을 +1 한 다음 다시 검색한다.
                 random = (random + 1) % obstacles.Count;
             }
-
-            // 랜덤으로 설정된 obstacle 오브젝트를 활성화한다.
-            obstacles[random].SetActive(true);
         }
+    }
+
+    public GameObject GetObstacle()
+    {
+        return obstacles[random];
     }
 }
